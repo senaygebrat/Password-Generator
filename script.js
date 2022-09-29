@@ -24,6 +24,7 @@ function writePassword() {
   checkLowCase()
   checkUpCase()
   checkNumeric()
+  checkSpecialCharacter()
 
   //write all calls for functions here
 
@@ -38,16 +39,12 @@ generateBtn.addEventListener("click", writePassword);
 
 
 function checkPasswordLength(){
-  passwordLength=prompt("Password must be in between 8 and 128 characters");
-    if(passwordLength >= 8 && passwordLength <= 128){  //why isn't it working at 8?
+  passwordLength=prompt("Password length must be in between 8 and 128 characters. Choose a number between 8 and 128.");
+    if(passwordLength >= 8 && passwordLength <= 128){  
     } 
     else(checkPasswordLength())
 
     }
-
-
-  //  function checkLowCase(){
-  //   confirm("Do you want to include lowercase letters?");
 
     function checkLowCase(){
       LowCase=prompt("Would you like to use lower case letters? Press y for yes, and n for no.")
@@ -68,7 +65,7 @@ function checkPasswordLength(){
 
     function checkNumeric(){
        numeric=prompt("Would you like to use numbers? Press y for yes, and n for no.")
-       if(numeric === "y" || numeric === "n"){
+       if(numeric == "y" || numeric == "n"){
          hasNum = true
        }
        else(checkNumeric())
@@ -77,48 +74,11 @@ function checkPasswordLength(){
     function checkSpecialCharacter(){
       specialCharacter=prompt("Would you like to use special characters? Press y for yes, and n for no.")
       if(specialCharacter === "y" || specialCharacter === "n"){
-        
       }
     }
 
-
-//  if(upCase == "n"){
-//    hasUpCase = false
-//  }
- 
-//  else{
-//    alert("Invalid selection.")
-//    checkUpCase();
-//  }
-// }
-
-
-
-
-
-
-// function checkLowCase(){
-//   if (haslowcase=prompt("Would you like to use lower case letters?") == true) {
-//     hasLowCase = "Input saved";
-//   }
-  
-  
-//   lowCase=prompt("Would you like to use lower case letters? Press y for yes, and n for no.");
-//   if(lowCase == "y"){
-//      hasLowCase = true
-//   }
-
-//   if(lowCase == "n"){
-//     hasLowCase = false
-//   }
-//   else{
-//     alert("Invalid selection.")
-//     checkLowCase();
-//   }
-// }
-
-
-
+    
 
 // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword);
+
