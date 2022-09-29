@@ -2,6 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 var passwordLength 
 var lowCase 
+var password
 var hasLowCase
 var upCase
 var hasUpCase
@@ -29,7 +30,7 @@ function writePassword() {
   //write all calls for functions here
 
 
-  var password = generatePassword();
+  var password = generatePassword(); //this line is populating in console.log saying generate password is not defined
   var passwordText = document.querySelector("#password");
 
 
@@ -43,7 +44,6 @@ function checkPasswordLength(){
     if(passwordLength >= 8 && passwordLength <= 128){  
     } 
     else(checkPasswordLength())
-
     }
 
     function checkLowCase(){
@@ -52,7 +52,6 @@ function checkPasswordLength(){
         hasLowCase = true
       }
       else(checkLowCase())
-      
    }
       
     function checkUpCase(){
@@ -74,10 +73,12 @@ function checkPasswordLength(){
     function checkSpecialCharacter(){
       specialCharacter=prompt("Would you like to use special characters? Press y for yes, and n for no.")
       if(specialCharacter === "y" || specialCharacter === "n"){
+        hasSpecialCharacter = true
       }
+        else(checkSpecialCharacter())
     }
-
     
+    console.log()
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
