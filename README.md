@@ -2,6 +2,8 @@
 
 ![Site Image](./images/pwgen.png)
 
+[Updated Site](https://senaygebrat.github.io/Password-Generator/)
+
 # About Passsword Generator
 
 The generate button prompts the user to select the criteria for the password, confirming whether or not to include lowercase, uppercase, numberic, and/or special characters with a length of 8-128 characters.
