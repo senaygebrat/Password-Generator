@@ -20,9 +20,12 @@ var specialCharacter = [
   "'", ':', '"', '\\', '|', ',', '.',
   '<', '>', '/', '?',  '~', ']', '/'
 ]
-// var grandArray = []
+
+// whenever generate button is clicked, it will call the writePassword function
+generateBtn.addEventListener("click", writePassword);
 
 
+//end user chooses length of password
 function checkPasswordLength() {
   passwordLength=prompt("Password length must be in between 8 and 128 characters. Choose a number between 8 and 128.");
     if(passwordLength < 8 || passwordLength > 128){
@@ -30,22 +33,29 @@ function checkPasswordLength() {
     } 
 }
 
+
+//end user can confirm or decline if they would like to use lower case letters
 function checkLowCase() {
   yesLowCase=confirm("Would you like to use lower case letters?")
 }
-      
+     
+//end user can confirm or decline if they would like to use upper case letters
 function checkUpCase() {
   yesUpCase=confirm("Would you like to use upper case letters?")
 }
 
+//end user can confirm or decline if they would like to use numbers
 function checkNumeric() {
   yesNum=confirm("Would you like to use numbers?")
 }
 
+//end user can confirm or decline if they would like to use special characters
 function checkSpecialCharacter() { 
   yesSpecialCharacter=confirm("Would you like to use special characters?")
 }
 
+//running a function checking if each input was selected yes, then
+//to concat each array into the next from a random selection of the array
 function checkGrandArray() {
   var grandArray = [];
   if(yesLowCase){
@@ -60,77 +70,51 @@ function checkGrandArray() {
   if(yesSpecialCharacter){
     grandArray = grandArray.concat(specialCharacter);
   }
-  return grandArray;
-}
-
-function generatePassword() {
-  // reset pw value so a page refresh is not needed
-  // pw = ''
-
-
-  // need to update for loop conditionals to dynamically render the correct amount
-  // currently works for a password length of 12 and an even distribution of characters
-  // if all are confirmed
-  // if(yesLowCase === true){
-    // var lower = ''
-    // for (var i = 0; i < 3; i++){
-    //   lower += lowerCase[Math.floor(Math.random() * lowerCase.length)]
-    //   }
-    // pw += lowerCase
-  // }
-  // if(yesUpCase === true){
-    // var upper = ''
-    // for (var i = 0; i < 3; i++){
-    //   upper += upperCase[Math.floor(Math.random() * upperCase.length)]
-    //   }
-    // pw += upperCase
-  // }
-  // if(yesNum === true){
-    // var numbers = ''
-    // for (var i = 0; i < 3; i++){
-    //   numbers += numeric[Math.floor(Math.random() * numeric.length)]
-    //   }
-    // pw += numeric
-  // }
-  // if(yesSpecialCharacter === true){
-    // var characters = ''
-    // for (var i = 0; i < 3; i++){
-    //   characters += specialCharacter[Math.floor(Math.random() * specialCharacter.length)]
-    //   }
-    // pw += specialCharacter
-  }
-
-  // if no options are confirmed return users to beginning propmt
+  
+//in a case where no selections are made for password criteria, it will revert
+//to the beginning and force the user to make a different choice
   if(yesLowCase === false && yesUpCase === false && yesNum === false && yesSpecialCharacter === false){
+
     writePassword()
   }
 
-  // for (var i = 0; i < parseInt(passwordLength); i++){
-    // first one pick random array from what they said true too and a random selection
-    // repeat until loop ends
+  return grandArray;
 
-    // password += pw.charAt(Math.floor(Math.random() * pw.length));
-  // }
-  // console.log({pw, password})
-  // return pw
-// }
+}
 
-// Write password to the #password input
-function writePassword() {
+//based on input from arrays the password will be generated
+function generatePassword() {
+
+  var pw = "";
+  var grandestArray = checkGrandArray()
+  function characterValue() {
+    var character = grandestArray[Math.floor(Math.random() * grandestArray.length)]
+    return character
+  }
+
+    for (var i = 0; i < passwordLength; i++){
+      pw = pw + characterValue()
+    }
+    return pw;
+    
+  }
+
+
+//calls the functions to run the code
+function writePassword() { 
   checkPasswordLength()
   checkLowCase()
   checkUpCase()
   checkNumeric()
   checkSpecialCharacter()
   checkGrandArray()
-  console.log(checkGrandArray())
-  
 
+  
+  //determines password
   var password = generatePassword(); 
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 }
-//reset grand array at end of program so doesn't accumulate
 
-generateBtn.addEventListener("click", writePassword);
+
